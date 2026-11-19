@@ -8,14 +8,16 @@ const tutorSelecionado = ref(null)
 
 // Busca a lista quando a página abre
 onMounted(async () => {
-  const resposta = await fetch(url + '/listartutores')
-  tutores.value = await resposta.json()
+  const resposta = await fetch(url + '/tutores')
+  const json = await resposta.json()
+  tutores.value = json.dados
 })
 
 // Consulta um tutor pelo id
 async function consultarTutor(id) {
-  const resposta = await fetch(url + '/consultartutor/' + id)
-  tutorSelecionado.value = await resposta.json()
+  const resposta = await fetch(url + '/tutores/' + id)
+  const json = await resposta.json()
+  tutorSelecionado.value = json.dados
 }
 </script>
 

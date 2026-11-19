@@ -8,14 +8,16 @@ const petSelecionado = ref(null)
 
 // Busca a lista quando a página abre
 onMounted(async () => {
-  const resposta = await fetch(url + '/listarpets')
-  pets.value = await resposta.json()
+  const resposta = await fetch(url + '/pets')
+  const json = await resposta.json()
+  pets.value = json.dados
 })
 
 // Consulta um pet pelo id
 async function consultarPet(id) {
-  const resposta = await fetch(url + '/consultarpet/' + id)
-  petSelecionado.value = await resposta.json()
+  const resposta = await fetch(url + '/pets/' + id)
+  const json = await resposta.json()
+  petSelecionado.value = json.dados
 }
 </script>
 
